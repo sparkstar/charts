@@ -1,0 +1,72 @@
+# Default values for static-site-deployer.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+server:
+  replicas: 1
+  pullPolicy: Always
+  image:
+    pullSecrets:
+      - name: SECRET
+    repository: nginx
+    tag: 1.25.2-alpine-slim
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 16Mi
+  limits:
+    cpu: 100m
+    memory: 32Mi
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: "ACCOUNT"
+
+nginx:
+  config: |
+    server {
+        listen       80;
+        listen  [::]:80;
+        server_name  localhost;
+
+        root   /usr/share/nginx/html;
+        index  index.html;
+
+        location / {
+            try_files $uri $uri/ =404;
+        }
+
+        error_page   404              /404.html;
+        error_page   500 502 503 504  /50x.html;
+
+        absolute_redirect off;
+        port_in_redirect off;
+    }
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: traefik-lb
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+  hosts:
+    - host: YOUR_HOST
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: TLS_SECRET
+      hosts:
+        - YOUR_HOST
+
+securityContext: {}
+podAnnotations: {}
+podSecurityContext: {}
+autoscaling:
+  enabled: false
