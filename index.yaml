@@ -3,6 +3,16 @@ entries:
   nginx-serve:
   - apiVersion: v2
     appVersion: "2023-01-01"
+    created: "2023-10-01T12:37:38.050731032Z"
+    description: simple static serving with nginx
+    digest: 2189f6835bbb7a24d28777621a8e4f6c1cd098f0812aa4aaa3423e55b76ad23d
+    name: nginx-serve
+    type: application
+    urls:
+    - https://github.com/sparkstar/charts/releases/download/nginx-serve-0.2.1/nginx-serve-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
+    appVersion: "2023-01-01"
     created: "2023-09-30T14:38:45.214463386Z"
     description: simple static serving with nginx
     digest: 7cd88f24a24a986f9448d82b36613a0ffcb9828621c4c954623378e646795520
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://github.com/sparkstar/charts/releases/download/nginx-serve-0.2.0/nginx-serve-0.2.0.tgz
     version: 0.2.0
-generated: "2023-09-30T14:38:45.214470487Z"
+generated: "2023-10-01T12:37:38.050739933Z"
