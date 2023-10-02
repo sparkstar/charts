@@ -50,20 +50,7 @@ service:
   port: 80
 
 ingress:
-  enabled: true
-  className: traefik-lb
-  annotations:
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: "true"
-  hosts:
-    - host: YOUR_HOST
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls:
-    - secretName: TLS_SECRET
-      hosts:
-        - YOUR_HOST
+  enabled: false
 
 securityContext: {}
 podAnnotations: {}
